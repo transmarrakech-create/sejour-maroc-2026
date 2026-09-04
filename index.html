@@ -126,6 +126,48 @@
     margin:0 auto;max-width:26em;
   }
 
+  /* ---- perimetre de la prestation ---- */
+  /* Ce que nous prenons en charge, et ce qui n'est qu'une suggestion. Le bloc
+     reprend l'aplat de terre crue des hebergements : meme matiere que le reste
+     de la page, donc il ne crie pas, mais il se lit avant le programme.
+     Les cinq prestations portent un tiret d'ocre ; les deux phrases de reserve
+     passent sous un filet, en plus petit, pour qu'on ne les confonde pas. */
+  .perimetre{margin-top:44px}
+  .perimetre-corps{
+    max-width:34em;margin:0 auto;text-align:left;
+    background:var(--panneau);padding:24px 22px 26px;
+  }
+  .perimetre h2{font-size:clamp(23px,5.8vw,28px);margin:0;text-wrap:balance}
+  .perimetre-liste{list-style:none;margin:17px 0 0;padding:0}
+  .perimetre-liste li{margin-top:9px;font-size:15px;line-height:1.6}
+  .perimetre-liste li:first-child{margin-top:0}
+  /* Un tiret d'ocre plutot qu'une puce : la page n'a aucune liste a points.
+     Le meme signe marque, plus bas, ce qui est compris dans le forfait. */
+  .tiret{position:relative;padding-left:19px}
+  .tiret::before{
+    content:"";position:absolute;left:0;top:.78em;
+    width:9px;height:1px;background:var(--ocre);
+  }
+  .perimetre-reserve{
+    margin:17px 0 0;padding-top:16px;
+    border-top:1px solid rgba(107,90,75,.24);
+    font-size:14px;line-height:1.62;color:var(--terre);
+  }
+  .perimetre-reserve + .perimetre-reserve{margin-top:9px;padding-top:0;border-top:0}
+
+  /* ---- repere de prise en charge ---- */
+  /* Une mention courte au meme endroit sur chaque journee : en parcourant la
+     page, on voit ce que nous organisons et ce qui appartient au voyageur.
+     Elle se cale a droite de la date sur grand ecran, et passe dessous en
+     mobile, ou 6 px de gouttiere evitent que les deux petites capitales ne se
+     lisent comme un seul bloc. Un demi-point de moins que la date : elle se
+     lit, elle ne domine pas. */
+  .tete{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px}
+  .rep{font-size:10.5px}
+  .rep-org{color:var(--ocre);font-weight:500}
+  .rep-dem{color:var(--ocre);font-weight:400}
+  .rep-vous{color:var(--terre);font-weight:400}
+
   /* ---- sequences ---- */
   .seq{padding-top:66px}
   .seq-tete{text-align:center;padding-bottom:6px}
@@ -140,6 +182,9 @@
   .jour{border-top:1px solid var(--trait);margin-top:38px;padding-top:26px}
   .jour h3{margin:8px 0 0}
   .jour .txt{margin:14px 0 0}
+  /* Ce qui est compris se lit la ou la chose est mentionnee, pas seulement en
+     tete de page : meme tiret d'ocre que l'encadre de perimetre. */
+  .inclus{margin:12px 0 0;font-size:14.5px;line-height:1.6;color:var(--terre)}
   .meta{
     margin:12px 0 0;font-size:12px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--terre);font-weight:400;
@@ -290,6 +335,8 @@
     .couverture .cadre{aspect-ratio:16/7}
     .ouverture{padding-top:68px}
     .sous{font-size:16px}
+    .perimetre{margin-top:58px}
+    .perimetre-corps{padding:30px 32px 32px}
     .seq{padding-top:104px}
     .jour{margin-top:54px;padding-top:34px}
     .jour .ph{margin-top:32px}
@@ -311,6 +358,11 @@
     .jour{margin-top:20px;padding-top:16px;break-inside:avoid;page-break-inside:avoid}
     .seq-tete{break-after:avoid;page-break-after:avoid}
     .nuit{background:#F5F1E8;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .perimetre{margin-top:24px}
+    .perimetre-corps{
+      background:#F5F1E8;padding:16px 18px;break-inside:avoid;page-break-inside:avoid;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
     .cadre{aspect-ratio:16/9}
     .idees{grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:16px}
     .idee{break-inside:avoid;page-break-inside:avoid}
@@ -344,6 +396,21 @@
     <hr class="filet">
     <p class="lead" data-en="Thirteen days in four movements. Marrakech first, its narrow streets, time enough to settle in. Then the road south, the Atlas passes and the earthen kasbahs. After that the dunes of erg Chebbi and a night under canvas. Essaouira last, the wind and the Atlantic, a quiet ending.">Treize jours, quatre temps. D'abord Marrakech et ses ruelles, le temps de s'installer. Puis la route du sud, les cols de l'Atlas et les kasbahs de terre. Viennent ensuite les dunes de l'erg Chebbi et une nuit sous tente. Enfin Essaouira, le vent et l'Atlantique, pour finir au calme.</p>
   </div>
+
+  <section class="wrap perimetre" aria-labelledby="perimetre-titre">
+    <div class="perimetre-corps">
+      <h2 id="perimetre-titre" data-en="What we organise for you">Ce que nous organisons pour vous</h2>
+      <ul class="perimetre-liste">
+        <li class="tiret" data-en="The private transfer from the airport to your hotel on arrival, 24 September.">Le transfert privé de l'aéroport à votre hôtel, à l'arrivée du 24 septembre.</li>
+        <li class="tiret" data-en="The southern circuit, 4 days and 3 nights, from 27 to 30 September.">Le circuit du sud, 4 jours et 3 nuits, du 27 au 30 septembre.</li>
+        <li class="tiret" data-en="Accommodation for those three nights, on request. In that case, the camel ride at Merzouga is included.">Les hébergements de ces trois nuits, sur demande. Dans ce cas, l'excursion en dromadaire de Merzouga est comprise.</li>
+        <li class="tiret" data-en="The private transfer from Essaouira to Marrakech, 5 October.">Le transfert privé d'Essaouira à Marrakech, le 5 octobre.</li>
+        <li class="tiret" data-en="The private transfer from Marrakech to the airport, 6 October.">Le transfert privé de Marrakech à l'aéroport, le 6 octobre.</li>
+      </ul>
+      <p class="perimetre-reserve" data-en="Entrance fees for the sites visited during the circuit remain at your own expense.">Les entrées des sites visités pendant le circuit restent à votre charge.</p>
+      <p class="perimetre-reserve" data-en="The rest of the trip is yours. The visits, restaurants and activities mentioned on this page are suggestions: they are neither booked nor included.">Le reste du séjour vous appartient. Les visites, les tables et les activités que cette page mentionne sont des suggestions&#160;: elles ne sont ni réservées ni comprises.</p>
+    </div>
+  </section>
 </header>
 
 <main>
@@ -357,7 +424,10 @@
   </div>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Thursday 24 September">Jeudi 24 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Thursday 24 September">Jeudi 24 septembre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Arrival in Marrakech">Arrivée à Marrakech</h3>
     <p class="txt" data-en="Arrival at 23:50 with Air Europa. Private transfer from the airport to Moro Marrakech Boutique Hôtel.">Arrivée à 23h50 avec Air Europa. Transfert privé de l'aéroport vers Moro Marrakech Boutique Hôtel.</p>
 
@@ -379,7 +449,10 @@
   </article>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Friday 25 September">Vendredi 25 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Friday 25 September">Vendredi 25 septembre</p>
+      <p class="sur rep rep-vous" data-en="Arranged by you">À votre organisation</p>
+    </div>
     <h3 data-en="Exploring Marrakech">Découverte de Marrakech</h3>
     <p class="txt" data-en="Preferably with a local guide. The medina, the souks, Jemaa el-Fna square, the Koutoubia and the main historic monuments.">Avec guide local, de préférence. Visite de la médina, des souks, de la place Jemaa el-Fna, de la Koutoubia et des principaux monuments historiques.</p>
 
@@ -421,7 +494,10 @@
   </article>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Saturday 26 September">Samedi 26 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Saturday 26 September">Samedi 26 septembre</p>
+      <p class="sur rep rep-vous" data-en="Arranged by you">À votre organisation</p>
+    </div>
     <h3 data-en="Free day in Marrakech">Journée libre à Marrakech</h3>
     <p class="txt" data-en="An activity or an additional visit can be added if you would like one.">Possibilité de prévoir une activité ou une visite complémentaire selon les envies.</p>
 
@@ -431,7 +507,10 @@
     </figure>
 
     <div class="nuit">
-      <p class="sur sur-t" data-en="Option · a break in the Agafay desert">Option &middot; une échappée dans le désert d'Agafay</p>
+      <div class="tete">
+        <p class="sur sur-t" data-en="Option">Option</p>
+        <p class="sur rep rep-dem" data-en="On request">Sur demande</p>
+      </div>
       <p class="nuit-nom" data-en="Le Bédouin Agafay">Le Bédouin Agafay</p>
       <p class="nuit-prix" data-en="&lt;b&gt;€55 per person&lt;/b&gt;, including dinner, the show and the pools. Transport to be confirmed."><b>55 &euro; par personne</b>, dîner, spectacle et piscine compris. Transport à confirmer.</p>
       <p class="nuit-note"><span data-en="Forty-five minutes from Marrakech, a camp set down in the stony desert of Agafay, facing the foothills of the Atlas. The afternoon at the pools, which open straight onto the landscape, then dinner under the tents and a show of music and dance.">À trois quarts d'heure de Marrakech, un camp posé dans le désert de pierres d'Agafay, face aux contreforts de l'Atlas. L'après-midi aux piscines ouvertes sur le paysage, puis le dîner sous les tentes et un spectacle de musique et de danse.</span><br>
@@ -579,13 +658,16 @@
 <!-- Le circuit du sud -->
 <section class="seq seq-sud">
   <div class="wrap seq-tete">
-    <p class="sur" data-en="27 to 29 September">27 au 29 septembre</p>
+    <p class="sur" data-en="27 to 30 September · 4 days and 3 nights">27 au 30 septembre &middot; 4 jours et 3 nuits</p>
     <h2 data-en="The southern circuit">Le circuit du sud</h2>
-    <p class="chapeau" data-en="Three days on the road to the south-east, from the kasbahs of the Atlas to the dunes of Merzouga, then back west through the Drâa valley.">Trois jours de route vers le sud-est, des kasbahs de l'Atlas aux dunes de Merzouga, puis retour vers l'ouest par la vallée du Drâa.</p>
+    <p class="chapeau" data-en="Four days on the road, from the kasbahs of the Atlas to the dunes of Merzouga, then back west through the Drâa valley and on to the ocean.">Quatre jours de route, des kasbahs de l'Atlas aux dunes de Merzouga, puis retour vers l'ouest par la vallée du Drâa et jusqu'à l'océan.</p>
   </div>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Sunday 27 September">Dimanche 27 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Sunday 27 September">Dimanche 27 septembre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Marrakech, Telouet, Aït Ben Haddou, Skoura">Marrakech, Telouet, Aït Ben Haddou, Skoura</h3>
     <p class="txt" data-en="Departure for the circuit. Visit to the Kasbah of Telouet, then the Ksar of Aït Ben Haddou, a UNESCO World Heritage site. On to Skoura.">Départ pour le circuit. Visite de la Kasbah de Telouet, puis découverte du Ksar d'Aït Ben Haddou, classé au patrimoine mondial de l'UNESCO. Continuation vers Skoura.</p>
     <p class="meta" data-en="Driving time: about 4 hrs 45 min">Route&#160;: environ 4h45</p>
@@ -623,7 +705,10 @@
     </div>
 
     <div class="nuit">
-      <p class="sur sur-t" data-en="Accommodation · night of 27 September">Hébergement &middot; nuit du 27 septembre</p>
+      <div class="tete">
+        <p class="sur sur-t" data-en="Accommodation · night of 27 September">Hébergement &middot; nuit du 27 septembre</p>
+        <p class="sur rep rep-dem" data-en="On request">Sur demande</p>
+      </div>
       <p class="nuit-prix" data-en="Two guesthouses to choose from, both in the Skoura palm grove and both at the same rate: &lt;b&gt;€40 to €50 per person&lt;/b&gt;, half board.">Deux maisons d'hôtes au choix, l'une et l'autre dans la palmeraie de Skoura, au même tarif&#160;: <b>40 à 50 &euro; par personne</b>, en demi-pension.</p>
 
       <div class="nuit-choix">
@@ -646,9 +731,13 @@
   </article>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Monday 28 September">Lundi 28 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Monday 28 September">Lundi 28 septembre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Skoura, Dadès Gorges, Merzouga">Skoura, Gorges du Dadès, Merzouga</h3>
     <p class="txt" data-en="Visit to the Kasbah Amridil, then the Dadès Gorges and the Tissadrine road. On to Merzouga via Erfoud. Camel ride at sunset. Night at the La Belle Étoile Xaluca camp.">Visite de la Kasbah Amridil, découverte des Gorges du Dadès et de la route de Tissadrine. Continuation vers Merzouga via Erfoud. Excursion en dromadaire au coucher du soleil. Nuit au bivouac La Belle Étoile Xaluca.</p>
+    <p class="inclus tiret" data-en="The camel ride is included if you entrust us with the accommodation for the circuit.">L'excursion en dromadaire est comprise si vous nous confiez les hébergements du circuit.</p>
 
     <figure class="ph">
       <div class="cadre"><img src="medias/08-dades.jpg" alt="Les gorges du Dadès et leurs parois de calcaire" loading="lazy" decoding="async" data-en-alt="The Dadès gorges and their limestone walls"></div>
@@ -691,7 +780,10 @@
     </div>
 
     <div class="nuit">
-      <p class="sur sur-t" data-en="Accommodation · night of 28 September">Hébergement &middot; nuit du 28 septembre</p>
+      <div class="tete">
+        <p class="sur sur-t" data-en="Accommodation · night of 28 September">Hébergement &middot; nuit du 28 septembre</p>
+        <p class="sur rep rep-dem" data-en="On request">Sur demande</p>
+      </div>
       <p class="nuit-nom" data-en="Bivouac La Belle Étoile, Xaluca group">Bivouac La Belle Étoile, groupe Xaluca</p>
       <p class="nuit-prix" data-en="&lt;b&gt;€200 per person&lt;/b&gt;, half board, including the night, the 4x4 transfer and the camel ride"><b>200 &euro; par personne</b>, en demi-pension, comprenant la nuitée, le transport en 4x4 et la balade en dromadaire</p>
       <p class="nuit-note" data-en="Merzouga, at the foot of the erg Chebbi dunes.">Merzouga, au pied des dunes de l'erg Chebbi.</p>
@@ -702,7 +794,10 @@
   </article>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Tuesday 29 September">Mardi 29 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Tuesday 29 September">Mardi 29 septembre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Merzouga, Rissani, Nkob, Drâa Valley, Ouarzazate">Merzouga, Rissani, Nkob, Vallée du Drâa, Ouarzazate</h3>
     <p class="txt" data-en="A stop at Rissani and its traditional souk, then on to Nkob. Lunch and the crossing of the Drâa Valley before arriving in Ouarzazate.">Passage par Rissani, découverte du souk traditionnel, puis continuation vers Nkob. Déjeuner et traversée de la Vallée du Drâa avant l'arrivée à Ouarzazate.</p>
     <p class="meta" data-en="Driving time: about 5 hrs 15 min">Route&#160;: environ 5h15</p>
@@ -756,7 +851,10 @@
     </div>
 
     <div class="nuit">
-      <p class="sur sur-t" data-en="Accommodation · night of 29 September">Hébergement &middot; nuit du 29 septembre</p>
+      <div class="tete">
+        <p class="sur sur-t" data-en="Accommodation · night of 29 September">Hébergement &middot; nuit du 29 septembre</p>
+        <p class="sur rep rep-dem" data-en="On request">Sur demande</p>
+      </div>
       <p class="nuit-nom" data-en="Hôtel Sultana Royal Golf">Hôtel Sultana Royal Golf</p>
       <p class="nuit-prix" data-en="&lt;b&gt;€100 to €110 per person&lt;/b&gt;, half board"><b>100 à 110 &euro; par personne</b>, en demi-pension</p>
       <p class="nuit-note"><a href="https://hotelsultanaroyalgolf.com/" target="_blank" rel="noopener noreferrer" data-en="hotelsultanaroyalgolf.com">hotelsultanaroyalgolf.com</a></p>
@@ -776,7 +874,10 @@
   </div>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Wednesday 30 September">Mercredi 30 septembre</p>
+    <div class="tete">
+      <p class="sur" data-en="Wednesday 30 September">Mercredi 30 septembre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Ouarzazate, Tizi n'Tichka, Essaouira">Ouarzazate, Tizi n'Tichka, Essaouira</h3>
     <p class="txt" data-en="Crossing the Atlas over the Tizi n'Tichka pass. A visit to an argan oil cooperative is possible. Arrival in Essaouira, with the Skala du Port and the medina depending on what time you get there.">Traversée de l'Atlas par le col du Tizi n'Tichka. Possibilité de visiter une coopérative d'huile d'argan. Arrivée à Essaouira et découverte de la Skala du port et de la médina selon l'heure d'arrivée.</p>
     <p class="meta" data-en="Driving time: about 7 hrs 15 min">Route&#160;: environ 7h15</p>
@@ -813,7 +914,10 @@
   </div>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Thursday 1 to Sunday 4 October">Du jeudi 1er au dimanche 4 octobre</p>
+    <div class="tete">
+      <p class="sur" data-en="Thursday 1 to Sunday 4 October">Du jeudi 1er au dimanche 4 octobre</p>
+      <p class="sur rep rep-vous" data-en="Arranged by you">À votre organisation</p>
+    </div>
     <h3 data-en="Free time in Essaouira">Séjour libre à Essaouira</h3>
     <p class="txt" data-en="The medina, the port, the Skala, the souks and the beaches. Guided activities or visits can be organised if you would like them.">Découverte de la médina, du port, de la Skala, des souks et des plages. Possibilité d'organiser des activités ou visites avec guide selon les souhaits.</p>
 
@@ -847,13 +951,19 @@
   </div>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Monday 5 October">Lundi 5 octobre</p>
+    <div class="tete">
+      <p class="sur" data-en="Monday 5 October">Lundi 5 octobre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Essaouira, Marrakech">Essaouira, Marrakech</h3>
     <p class="txt" data-en="Departure from Essaouira at 13:00. Private transfer to Marrakech. Check-in at a hotel in Marrakech, to be confirmed.">Départ à 13h00 d'Essaouira. Transfert privé vers Marrakech. Installation dans un hôtel à Marrakech, à confirmer.</p>
   </article>
 
   <article class="wrap jour">
-    <p class="sur" data-en="Tuesday 6 October">Mardi 6 octobre</p>
+    <div class="tete">
+      <p class="sur" data-en="Tuesday 6 October">Mardi 6 octobre</p>
+      <p class="sur rep rep-org" data-en="Organised by Trans Marrakech">Organisé par Trans Marrakech</p>
+    </div>
     <h3 data-en="Departure from Marrakech">Départ de Marrakech</h3>
     <p class="txt" data-en="Private transfer from the hotel to Marrakech airport. The TAP Airways flight leaves at 10:45.">Transfert privé de l'hôtel vers l'aéroport de Marrakech. Départ du vol TAP Airways à 10h45.</p>
   </article>
@@ -864,7 +974,7 @@
 <footer>
   <div class="wrap fin">
     <hr class="filet">
-    <p class="clot" data-en="This programme is still open. The guide on 25 September, several of the places to stay and all of the rates are still to be confirmed, and the free days can be filled or left as they are, whichever you prefer. Tell us what you would like to add, trim or move, and we will adjust it and send you the revised version.">Ce programme reste ouvert. Le guide du 25 septembre, plusieurs hébergements et l'ensemble des tarifs sont encore à confirmer, et les journées libres peuvent se remplir ou rester telles quelles, comme vous le préférez. Dites-nous ce que vous souhaitez ajouter, alléger ou décaler&#160;: nous ajustons et nous vous renvoyons la version corrigée.</p>
+    <p class="clot" data-en="This programme is still open. The transport rates are still to be confirmed, and the free days can be filled or left as they are, whichever you prefer. Tell us what you would like to add, trim or move, and we will adjust it and send you the revised version.">Ce programme reste ouvert. Les tarifs de transport sont encore à confirmer, et les journées libres peuvent se remplir ou rester telles quelles, comme vous le préférez. Dites-nous ce que vous souhaitez ajouter, alléger ou décaler&#160;: nous ajustons et nous vous renvoyons la version corrigée.</p>
 
     <p class="note-heb" data-en="The three nights at Skoura, Merzouga and Ouarzazate are the only ones covered by this accommodation proposal. The nights in Marrakech and Essaouira are booked by you.">Les trois nuits de Skoura, Merzouga et Ouarzazate sont les seules comprises dans cette proposition d'hébergement. Les nuits de Marrakech et d'Essaouira sont réservées par vos soins.</p>
 
